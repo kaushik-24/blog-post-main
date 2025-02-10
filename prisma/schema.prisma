@@ -13,11 +13,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model Blog {
   id        Int      @id @default(autoincrement())
   title     String
   content   String
-  userId    String
+  authorId  String   // To link with Auth0 user ID
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+

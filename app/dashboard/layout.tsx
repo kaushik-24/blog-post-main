@@ -10,7 +10,7 @@ export default async function DashboardLayout({
   const session = await getSession();
 
   return (
-    <div className="container">
+    <div className="">
       <DashboardGrid>
         {children}
       </DashboardGrid>

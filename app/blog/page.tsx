@@ -1,70 +1,62 @@
+'use client';
 
-// app/dashboard/blog/page.tsx
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-interface BlogPost {
-  id: string;
+interface Blog {
+  id: number;
   title: string;
   content: string;
-  date: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
-async function getBlogPosts() {
-  // Replace this with your actual data fetching logic
-  const res = await fetch('your-api-endpoint/posts', { cache: 'no-store' });
-  return res.json();
-}
+export default function BlogPage() {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-export default async function BlogPage() {
-  const posts = await getBlogPosts();
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch('/api/blog'); // Fetching from API route
+        if (!res.ok) throw new Error('Failed to fetch blogs.');
+        const data = await res.json();
+        setBlogs(data);
+      } catch (err) {
+        setError((err as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  if (loading) return <p>Loading blogs...</p>;
+  if (error) return <p className="text-red-500">Error: {error}</p>;
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Blog Posts</h1>
-        <Link 
-          href="/dashboard/blog/create" 
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Create New Post
-        </Link>
-      </div>
+    <main className="max-w-3xl mx-auto p-4">
+      <h1 className="text-5xl font-bold mb-4 mt-[10vh] flex justify-center items-center">All Blog Posts</h1>
 
-      <div className="grid gap-4">
-        {posts?.map((post: BlogPost) => (
-          <div key={post.id} className="border rounded-lg p-4 bg-white shadow">
-            <div className="flex justify-between items-start">
-              <div>
-                <h2 className="text-xl font-semibold">{post.title}</h2>
-                <p className="text-gray-600 mt-2">{post.content.substring(0, 150)}...</p>
-                <span className="text-sm text-gray-500 mt-2 block">
-                  {new Date(post.date).toLocaleDateString()}
-                </span>
-              </div>
-              <div className="flex gap-2">
-                <Link 
-                  href={`/dashboard/blog/edit/${post.id}`}
-                  className="text-blue-500 hover:text-blue-700"
-                >
-                  Edit
-                </Link>
-                <button
-                  onClick={async () => {
-                    if (confirm('Are you sure you want to delete this post?')) {
-                      await fetch(`/api/posts/${post.id}`, { method: 'DELETE' });
-                      // Refresh the page or update the state
-                      window.location.reload();
-                    }
-                  }}
-                  className="text-red-500 hover:text-red-700"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+      {blogs.length === 0 ? (
+        <p>No blog posts yet. Check back soon!</p>
+      ) : (
+        blogs.map((blog) => (
+          <article key={blog.id} className="border-b border-gray-300 py-4">
+            <Link href={`/blog/${blog.id}`}>
+              <h2 className="text-4xl font-semibold text-blue-700 hover:underline cursor-pointer">
+                {blog.title}
+              </h2>
+            </Link>
+            <p className="text-sm text-gray-500">
+              Posted on {new Date(blog.createdAt).toLocaleDateString()}
+            </p>
+          </article>
+        ))
+      )}
+    </main>
   );
 }
+

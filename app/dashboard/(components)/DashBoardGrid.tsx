@@ -16,7 +16,7 @@ const DashboardGrid = ({ children }: { children: React.ReactNode }) => {
           <Link href="/dashboard" className="block py-2 px-4 hover:text-[#990011] ">
             Overview
           </Link>
-          <Link href="/dashboard/blogs" className="block py-2 px-4 hover:text-[#990011] ">
+          <Link href="/dashboard/blog" className="block py-2 px-4 hover:text-[#990011] ">
            Blogs 
           </Link>
             <div className='mt-[70vh]'>

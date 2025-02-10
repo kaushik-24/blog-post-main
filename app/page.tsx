@@ -5,8 +5,7 @@ import LoadUser from "./components/LoadUser";
 
 export default function Home() {
   return (
-    <div className="hero">
-      <NavBar />
+    <div className="">
       <Hero />
     </div>
 )
