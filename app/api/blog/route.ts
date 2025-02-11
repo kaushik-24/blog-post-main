@@ -6,6 +6,7 @@ export async function GET() {
     const blogs = await prisma.blog.findMany();
     return NextResponse.json(blogs);
   } catch (error) {
+    console.error(error);
     return NextResponse.json({ error: 'Failed to fetch blogs' }, { status: 500 });
   }
 }
