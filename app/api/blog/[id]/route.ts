@@ -12,6 +12,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     });
     return NextResponse.json(updatedBlog);
   } catch (error) {
+    console.error(error);
     return NextResponse.json({ error: 'Failed to update blog' }, { status: 500 });
   }
 }
@@ -22,6 +23,7 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
     await prisma.blog.delete({ where: { id: blogId } });
     return new Response(null, { status: 204 });
   } catch (error) {
+    console.error(error);
     return new Response('Failed to delete blog', { status: 500 });
   }
 }
@@ -40,6 +42,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 
     return NextResponse.json(blog);
   } catch (error) {
+    console.error(error);
     return NextResponse.json({ error: 'Failed to fetch blog' }, { status: 500 });
   }
 }
