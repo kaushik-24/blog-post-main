@@ -1,5 +1,5 @@
-// auth0.js
-import { initAuth0 } from '@auth0/nextjs-auth0';
+import { initAuth0, Session, } from '@auth0/nextjs-auth0';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export default initAuth0({
   secret: process.env.AUTH0_SECRET,
@@ -10,8 +10,14 @@ export default initAuth0({
   authorizationParams: {
     redirect_uri: `${process.env.AUTH0_BASE_URL}/api/auth/callback`,
   },
-  afterCallback: (req, res, session, state) => {
+  afterCallback: (
+    _req: NextApiRequest,
+    res: NextApiResponse,
+    session: Session,
+    _state: any // Replace `any` with a more specific type if possible
+  ) => {
     res.setHeader('Location', '/dashboard');
     return session;
   },
 });
+
