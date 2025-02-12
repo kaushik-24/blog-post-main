@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+// Update blog post
+export async function PUT(req: Request, context: { params: { id: string } }) {
   const { title, content } = await req.json();
-  const blogId = parseInt(params.id);
+  const blogId = parseInt(context.params.id, 10);
 
   try {
     const updatedBlog = await prisma.blog.update({
@@ -16,8 +17,10 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     return NextResponse.json({ error: 'Failed to update blog' }, { status: 500 });
   }
 }
-export async function DELETE({ params }: { params: { id: string } }) {
-  const blogId = parseInt(params.id);
+
+// Delete blog post
+export async function DELETE(_req: Request, context: { params: { id: string } }) {
+  const blogId = parseInt(context.params.id, 10);
 
   try {
     await prisma.blog.delete({ where: { id: blogId } });
@@ -28,8 +31,9 @@ export async function DELETE({ params }: { params: { id: string } }) {
   }
 }
 
-export async function GET({ params }: { params: { id: string } }) {
-  const blogId = parseInt(params.id);
+// Get blog post
+export async function GET(_req: Request, context: { params: { id: string } }) {
+  const blogId = parseInt(context.params.id, 10);
 
   try {
     const blog = await prisma.blog.findUnique({
@@ -46,3 +50,4 @@ export async function GET({ params }: { params: { id: string } }) {
     return NextResponse.json({ error: 'Failed to fetch blog' }, { status: 500 });
   }
 }
+
