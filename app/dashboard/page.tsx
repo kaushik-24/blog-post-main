@@ -1,5 +1,3 @@
-import { getSession } from '@auth0/nextjs-auth0';
-import DashboardGrid from './(components)/DashBoardGrid';
 import { Component } from './(components)/ui/chart';
 
 export default async function Dashboard() {

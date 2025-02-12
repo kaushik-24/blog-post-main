@@ -16,7 +16,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     return NextResponse.json({ error: 'Failed to update blog' }, { status: 500 });
   }
 }
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE({ params }: { params: { id: string } }) {
   const blogId = parseInt(params.id);
 
   try {
@@ -28,7 +28,7 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
   }
 }
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET({ params }: { params: { id: string } }) {
   const blogId = parseInt(params.id);
 
   try {
