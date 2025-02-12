@@ -32,10 +32,18 @@ export async function DELETE(_req: Request, { params }: { params: { id: string }
 }
 
 // Get blog post
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
-  const blogId = parseInt(params.id, 10);
-
+export async function GET(req: Request) {
   try {
+    // Extract blog ID from the URL
+    const url = new URL(req.url);
+    const id = url.pathname.split('/').pop(); // Gets the dynamic [id] from the URL
+
+    if (!id || isNaN(Number(id))) {
+      return NextResponse.json({ error: 'Invalid blog ID' }, { status: 400 });
+    }
+
+    const blogId = parseInt(id, 10);
+
     const blog = await prisma.blog.findUnique({
       where: { id: blogId },
     });
@@ -50,4 +58,3 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
     return NextResponse.json({ error: 'Failed to fetch blog' }, { status: 500 });
   }
 }
-
