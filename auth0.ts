@@ -10,5 +10,9 @@ export default initAuth0({
   authorizationParams: {
     redirect_uri: `${process.env.AUTH0_BASE_URL}/api/auth/callback`,
   },
+ afterCallback: (req, res, session, state) => {
+    res.setHeader('Location', '/dashboard');
+    return session;
+  },
 });
 
