@@ -12,7 +12,7 @@ const Hero = () => {
         font-bold ">
         <ChangeText />
           <div className="flex  mt-5 mb-2 space-x-4 justify-center">
-          <Link href="../api/auth/login?returnTo=/dashboard">
+          <Link href="../dashboard">
               <LogInBtn>
               </LogInBtn>
           </Link>
