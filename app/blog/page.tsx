@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import BackBtn from '../components/ui/BackBtn';
 
 interface Blog {
   id: number;
@@ -37,8 +38,9 @@ export default function BlogPage() {
   if (error) return <p className="text-red-500">Error: {error}</p>;
 
   return (
-    <main className="max-w-3xl mx-auto p-4">
-      <h1 className="text-5xl font-bold mb-4 mt-[10vh] flex justify-center items-center">All Blog Posts</h1>
+    <main className="max-w-3xl mx-auto p-4 mt-[10vh]">
+      <Link href="/"><p><BackBtn /></p></Link>
+      <h1 className="text-5xl font-bold mb-4 flex justify-center items-center">All Blog Posts</h1>
 
       {blogs.length === 0 ? (
         <p>No blog posts yet. Check back soon!</p>
@@ -46,7 +48,7 @@ export default function BlogPage() {
         blogs.map((blog) => (
           <article key={blog.id} className="border-b border-gray-300 py-4">
             <Link href={`/blog/${blog.id}`}>
-              <h2 className="text-4xl font-semibold text-blue-700 hover:underline cursor-pointer">
+              <h2 className="text-4xl font-semibold text-[#990011] hover:underline cursor-pointer">
                 {blog.title}
               </h2>
             </Link>

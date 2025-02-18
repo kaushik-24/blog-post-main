@@ -51,7 +51,7 @@ const NavBar = () => {
         -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4">
           <div className="flex items-center gap-7">
-            <p className="text-4xl">Postly</p>
+            <p className="text-4xl font-extrabold text-[#990011]">Postly</p>
             </div>
 
           <div className="flex h-full items-center">

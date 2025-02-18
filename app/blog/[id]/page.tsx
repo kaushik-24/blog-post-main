@@ -39,7 +39,7 @@ export default function BlogDetails() {
   if (!blog) return <p>Blog not found.</p>;
 
   return (
-    <main className="max-w-3xl mx-auto p-4">
+    <main className="max-w-3xl mx-auto p-4 mt-[10vh]">
       <Link href="/blog" className="text-blue-500 hover:underline mb-4 inline-block">
         ← Back to Blog List
       </Link>

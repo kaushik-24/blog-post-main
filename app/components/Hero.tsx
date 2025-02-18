@@ -6,7 +6,7 @@ import LogInBtn from './ui/LogInBtn'
 const Hero = () => {
   return (
     <>
-    <div className="font-extrabold text-[12vh] md:text-[16vh] lg:text-[24vh] mt-[20vh] flex justify-center items-start underline">
+    <div className="font-extrabold text-[12vh] md:text-[16vh] lg:text-[24vh] mt-[20vh] flex justify-center items-start underline ">
       Postl<span className="text-[#990011]">y</span></div>
     <div className="text-2xl text-center tracking-widest 
         font-bold ">
