@@ -5,7 +5,7 @@ import { useWindowScroll } from "react-use";
 import Link from "next/link"
 
 
-const navItems = [{name: 'home', ref: '/'},{name: 'blog', ref: 'blog'},{name: 'about', ref: 'about'}, {name: 'contact', ref:'contact'}]
+const navItems = [{name: 'home', ref: '/'},{name: 'blog', ref: 'blog'},{name: 'about', ref: 'about'}, ]
 
 const NavBar = () => {
 

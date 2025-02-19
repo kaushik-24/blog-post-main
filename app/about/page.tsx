@@ -1,6 +1,7 @@
 import Link from "next/link";
 import BackBtn from "../components/ui/BackBtn";
 import SocialCard from "../components/ui/SocialCard";
+import Form from "../components/ui/FormCard";
 
 export default function page() {
   return (
@@ -17,6 +18,7 @@ export default function page() {
         </p>
     </section>
         <div className=" mt-[28vh]">
+        <Form />
         <SocialCard />
       </div>
   </>

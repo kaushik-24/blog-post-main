@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import BackBtn from '@/app/components/ui/BackBtn';
 
 interface Blog {
   id: number;
@@ -34,17 +35,18 @@ export default function BlogDetails() {
     if (id) fetchBlog();
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <div className='flex items-center justify-center h-screen '>
+    <div className='loading'></div></div>;
   if (error) return <p className="text-red-500">Error: {error}</p>;
   if (!blog) return <p>Blog not found.</p>;
 
   return (
     <main className="max-w-3xl mx-auto p-4 mt-[10vh]">
       <Link href="/blog" className="text-blue-500 hover:underline mb-4 inline-block">
-        ← Back to Blog List
+       <BackBtn /> 
       </Link>
 
-      <h1 className="text-5xl font-bold">{blog.title}</h1>
+      <h1 className="text-5xl font-bold mb-3">{blog.title}</h1>
       <p className="text-sm text-gray-500 mb-4">
         Posted on {new Date(blog.createdAt).toLocaleDateString()}
       </p>

@@ -53,29 +53,31 @@ export default function BlogPage() {
   };
 
   return (
-    <div>
-      <h1>Blog Management</h1>
+    <div className='ms-5'>
+      <h1 className='text-5xl font-bold mt-[5vh] mb-[5vh] ms-5'>Blog Management</h1>
 
-      <div>
+      <div className='flex space-x-4 mb-5'>
         <input
           type="text"
-          placeholder="Title"
+          placeholder="  Title"
           value={newBlog.title}
+          className=" border-gray-300 focus:ring-2 rounded-md focus:border-[#990011] focus:ring-[#990011] focus:outline-none "
           onChange={(e) => setNewBlog({ ...newBlog, title: e.target.value })}
         />
         <textarea
-          placeholder="Content"
+          placeholder="  Content"
           value={newBlog.content}
+          className=" border-gray-300 focus:ring-2 rounded-md focus:border-[#990011] focus:ring-[#990011] focus:outline-none "
           onChange={(e) => setNewBlog({ ...newBlog, content: e.target.value })}
         />
-        <button onClick={handleCreate}>Create Blog</button>
+        <button onClick={handleCreate} className='custom-btn'>Push</button>
       </div>
 
       <ul>
         {blogs.map((blog) => (
           <li key={blog.id}>
             {editing?.id === blog.id ? (
-              <div>
+              <div className='flex space-x-4 mb-5'>
                 <input
                   type="text"
                   value={editing.title}
@@ -85,15 +87,14 @@ export default function BlogPage() {
                   value={editing.content}
                   onChange={(e) => setEditing({ ...editing, content: e.target.value })}
                 />
-                <button onClick={handleUpdate}>Save</button>
-                <button onClick={() => setEditing(null)}>Cancel</button>
+                <button onClick={handleUpdate} className='custom-btn'>save</button>
+                <button onClick={() => setEditing(null)} className='custom-btn'>cancel</button>
               </div>
             ) : (
               <div>
-                <h3>{blog.title}</h3>
-                <p>{blog.content}</p>
-                <button onClick={() => setEditing(blog)}>Edit</button>
-                <button onClick={() => handleDelete(blog.id)}>Delete</button>
+                <h3 className='text-3xl'>{blog.title}</h3>
+                <button onClick={() => setEditing(blog)}className='custom-btn'>Edit</button>
+                <button onClick={() => handleDelete(blog.id)} className='custom-btn'>Delete</button>
               </div>
             )}
           </li>

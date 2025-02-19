@@ -37,7 +37,7 @@ const StyledWrapper = styled.div`
     position: absolute;
     inset: 0;
     background-color: #4158D0;
-    background-image: linear-gradient(43deg, #990011 0%, #990011 46%, white 100%);
+    background-image: linear-gradient(43deg, #990011 0%, #990011 46%, black 90%);
   }
 
   .logo {
