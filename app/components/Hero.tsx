@@ -2,6 +2,7 @@ import Link from 'next/link'
 import '../custom.css'
 import ChangeText from './ui/ChangeText'
 import LogInBtn from './ui/LogInBtn'
+import '../globals.css'
 
 const Hero = () => {
   return (
