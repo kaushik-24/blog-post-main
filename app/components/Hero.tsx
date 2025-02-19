@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import '../custom.css'
 import ChangeText from './ui/ChangeText'
-import LogInBtn from './ui/LogInBtn'
 import '../globals.css'
 
 const Hero = () => {
@@ -14,8 +13,7 @@ const Hero = () => {
         <ChangeText />
           <div className="flex  mt-5 mb-2 space-x-4 justify-center">
           <Link href="/api/auth/login?returnTo=/dashboard">
-              <LogInBtn>
-              </LogInBtn>
+            <div className="login-btn"></div>
           </Link>
           </div>
     </div>
